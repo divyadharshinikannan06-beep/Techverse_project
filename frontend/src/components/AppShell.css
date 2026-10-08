@@ -1,0 +1,685 @@
+/* ============================================================
+   TECHVERSE KINGDOM — APPSHELL STYLES
+   Futuristic Cyber-Fantasy Kingdom HUD & Navigation
+   ============================================================ */
+
+.tv-kingdom-shell {
+  --k-bg: #050816;
+  --k-navy: #08112c;
+  --k-purple: #130a2a;
+  --k-card: #0d1636;
+  --k-card-hover: #15224e;
+  --k-border: rgba(139, 92, 246, 0.28);
+  --k-border-glow: rgba(34, 211, 238, 0.45);
+  --k-cyan: #22d3ee;
+  --k-violet: #8b5cf6;
+  --k-magenta: #ec4899;
+  --k-gold: #f59e0b;
+  --k-text: #f8fafc;
+  --k-text-muted: #94a3b8;
+
+  position: relative;
+  min-height: 100vh;
+  color: var(--k-text);
+  background: var(--k-bg);
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Background Atmosphere & Ambient Aurora */
+.kingdom-bg-aurora {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(124, 58, 237, 0.18), transparent 35rem),
+    radial-gradient(circle at 85% 20%, rgba(6, 182, 212, 0.14), transparent 32rem),
+    radial-gradient(circle at 50% 90%, rgba(236, 72, 153, 0.1), transparent 38rem);
+  z-index: 0;
+}
+
+.kingdom-bg-stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+    radial-gradient(circle at 30% 70%, rgba(34, 211, 238, 0.2) 1.5px, transparent 1.5px);
+  background-size: 80px 80px, 120px 120px;
+  opacity: 0.45;
+  z-index: 0;
+}
+
+.tv-kingdom-workspace {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 70px;
+}
+
+/* ============================================================
+   TOP HUD NAVIGATION BAR
+   ============================================================ */
+
+.kingdom-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 72px;
+  padding: 10px clamp(16px, 2.5vw, 36px);
+  border-bottom: 1px solid rgba(123, 97, 255, 0.28);
+  background: rgba(11, 15, 26, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(2, 6, 23, 0.75), 0 1px 15px rgba(34, 211, 238, 0.15);
+}
+
+.kingdom-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 0 0 auto;
+}
+
+/* Brand Mark */
+.kingdom-topbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease;
+}
+
+.kingdom-topbar-brand:hover {
+  transform: translateY(-1px);
+}
+
+.kingdom-brand-mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1.5px solid rgba(123, 97, 255, 0.45);
+  border-radius: 13px;
+  background: linear-gradient(135deg, rgba(123, 97, 255, 0.25), rgba(34, 211, 238, 0.15));
+  box-shadow: 0 0 20px rgba(123, 97, 255, 0.35);
+  overflow: visible;
+}
+
+.brand-orbital-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px dashed rgba(34, 211, 238, 0.5);
+  transform: rotate(25deg);
+  animation: tvSpin 18s linear infinite;
+  pointer-events: none;
+}
+
+.brand-tv-monogram {
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  background: linear-gradient(135deg, #ffffff 0%, #22D3EE 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+
+.brand-diamond-sparkle {
+  position: absolute;
+  top: 1px;
+  right: 2px;
+  color: #22D3EE;
+  filter: drop-shadow(0 0 4px #22D3EE);
+}
+
+.brand-spark-dot {
+  position: absolute;
+  bottom: -2px;
+  left: -2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #7B61FF;
+  box-shadow: 0 0 8px #7B61FF;
+  animation: brand-spark-blink 2s ease-in-out infinite;
+}
+
+@keyframes brand-spark-blink {
+  0%, 100% { opacity: 0.5; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.kingdom-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #ffffff, #c7d2fe 60%, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-tag {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  color: #38bdf8;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
+}
+
+/* Realm Title Header */
+.kingdom-realm-title {
+  display: flex;
+  flex-direction: column;
+  padding-left: 18px;
+  border-left: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.realm-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #c084fc;
+  text-shadow: 0 0 10px rgba(168, 85, 247, 0.35);
+}
+
+.realm-sub {
+  margin: 1px 0 0;
+  font-size: 9.5px;
+  color: #94a3b8;
+  max-width: 260px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ============================================================
+   DESKTOP HUD NAVIGATION MENU
+   ============================================================ */
+
+.kingdom-desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 16px;
+  background: rgba(10, 16, 42, 0.7);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25) inset;
+}
+
+.kingdom-nav-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  color: #94a3b8;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-pill-icon {
+  color: #818cf8;
+  transition: all 0.2s ease;
+}
+
+.kingdom-nav-pill:hover {
+  color: #ffffff;
+  background: rgba(124, 58, 237, 0.14);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+.kingdom-nav-pill:hover .nav-pill-icon {
+  color: #22d3ee;
+  transform: translateY(-1px);
+}
+
+.kingdom-nav-pill.active {
+  color: #ffffff;
+  font-weight: 600;
+  border-color: rgba(34, 211, 238, 0.45);
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.35), rgba(6, 182, 212, 0.2));
+  box-shadow:
+    0 0 16px rgba(124, 58, 237, 0.3),
+    0 0 8px rgba(34, 211, 238, 0.2) inset;
+}
+
+.kingdom-nav-pill.active .nav-pill-icon {
+  color: #38bdf8;
+  filter: drop-shadow(0 0 6px #38bdf8);
+}
+
+.nav-pill-glow {
+  position: absolute;
+  bottom: -2px;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #8b5cf6, #22d3ee);
+  box-shadow: 0 0 8px #22d3ee;
+}
+
+/* ============================================================
+   TOPBAR RIGHT: QUICK STATS & ACTIONS
+   ============================================================ */
+
+.kingdom-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+/* RPG Stats HUD */
+.kingdom-stats-hud {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hud-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 9px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: rgba(13, 20, 50, 0.85);
+  border: 1px solid rgba(139, 92, 246, 0.22);
+}
+
+.hud-level {
+  color: #fbbf24;
+  border-color: rgba(251, 191, 36, 0.3);
+  background: rgba(251, 191, 36, 0.08);
+}
+.level-icon {
+  color: #fbbf24;
+  filter: drop-shadow(0 0 5px #fbbf24);
+}
+
+.hud-xp {
+  color: #c084fc;
+  border-color: rgba(168, 85, 247, 0.3);
+  background: rgba(168, 85, 247, 0.08);
+}
+.xp-icon {
+  color: #c084fc;
+  filter: drop-shadow(0 0 5px #c084fc);
+}
+
+.hud-streak {
+  color: #f97316;
+  border-color: rgba(249, 115, 22, 0.3);
+  background: rgba(249, 115, 22, 0.08);
+}
+.streak-icon {
+  color: #f97316;
+  filter: drop-shadow(0 0 5px #f97316);
+}
+
+/* Buttons and Profile */
+.kingdom-icon-btn {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: 11px;
+  background: rgba(13, 20, 48, 0.8);
+  color: #cbd5e1;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.kingdom-icon-btn:hover {
+  border-color: rgba(34, 211, 238, 0.5);
+  background: rgba(124, 58, 237, 0.2);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.25);
+}
+
+.icon-btn-dot {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f59e0b;
+  box-shadow: 0 0 8px #f59e0b;
+}
+
+.kingdom-profile-crest {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid rgba(168, 85, 247, 0.5);
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.4), rgba(6, 182, 212, 0.3));
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.kingdom-profile-crest img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.kingdom-profile-crest:hover {
+  transform: scale(1.06);
+  border-color: #22d3ee;
+  box-shadow: 0 0 16px rgba(34, 211, 238, 0.45);
+}
+
+.kingdom-mobile-toggle {
+  display: none;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 11px;
+  background: rgba(13, 20, 48, 0.85);
+  color: #e2e8f0;
+  cursor: pointer;
+}
+
+/* ============================================================
+   MOBILE DRAWER NAVIGATION (Requirement 7)
+   ============================================================ */
+
+.kingdom-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(2, 6, 23, 0.7);
+  backdrop-filter: blur(8px);
+}
+
+.kingdom-drawer-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(85vw, 340px);
+  z-index: 51;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto;
+  border-left: 1px solid rgba(139, 92, 246, 0.35);
+  background: linear-gradient(165deg, rgba(15, 23, 54, 0.98), rgba(8, 14, 34, 0.99));
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.8);
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.drawer-player-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.drawer-avatar {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1.5px solid #a855f7;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.5), rgba(6, 182, 212, 0.4));
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.drawer-player-info strong {
+  display: block;
+  font-size: 14px;
+  color: #f8fafc;
+}
+
+.drawer-player-info span {
+  font-size: 11px;
+  color: #38bdf8;
+}
+
+.drawer-close-btn {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: 10px;
+  background: rgba(13, 20, 48, 0.6);
+  color: #94a3b8;
+  cursor: pointer;
+}
+
+.drawer-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.drawer-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.drawer-group-title {
+  padding: 4px 8px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #a855f7;
+}
+
+.drawer-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  color: #cbd5e1;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.drawer-link svg {
+  color: #818cf8;
+}
+
+.drawer-link:hover {
+  background: rgba(124, 58, 237, 0.15);
+  color: #ffffff;
+}
+
+.drawer-link.active {
+  border-color: rgba(34, 211, 238, 0.4);
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.3), rgba(6, 182, 212, 0.15));
+  color: #ffffff;
+}
+
+.drawer-link.active svg {
+  color: #38bdf8;
+}
+
+.drawer-arrow {
+  margin-left: auto;
+  opacity: 0.5;
+}
+
+.drawer-badge-spark {
+  margin-left: auto;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: rgba(168, 85, 247, 0.25);
+  color: #e9d5ff;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.drawer-link.logout {
+  color: #fca5a5;
+  margin-top: 6px;
+}
+
+.drawer-link.logout svg {
+  color: #f87171;
+}
+
+/* ============================================================
+   MAIN CONTENT AREA
+   ============================================================ */
+
+.tv-kingdom-content {
+  flex: 1;
+  width: min(100%, 1500px);
+  margin: 0 auto;
+  padding: 22px clamp(16px, 2.5vw, 36px) 40px;
+}
+
+/* ============================================================
+   MOBILE BOTTOM BAR
+   ============================================================ */
+
+.kingdom-mobile-bottom-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 35;
+  align-items: center;
+  justify-content: space-around;
+  min-height: 60px;
+  padding: 6px 10px max(6px, env(safe-area-inset-bottom));
+  border-top: 1px solid rgba(139, 92, 246, 0.25);
+  background: rgba(8, 14, 36, 0.94);
+  backdrop-filter: blur(18px);
+}
+
+.mobile-bottom-link {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 4px 8px;
+  color: #94a3b8;
+  font-size: 9.5px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.mobile-bottom-link.active {
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.bottom-pip {
+  position: absolute;
+  top: 2px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 6px #38bdf8;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN BREAKPOINTS
+   ============================================================ */
+
+@media (max-width: 1200px) {
+  .kingdom-desktop-nav {
+    display: none;
+  }
+  .kingdom-mobile-toggle {
+    display: grid;
+  }
+  .kingdom-realm-title {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .kingdom-stats-hud {
+    display: none;
+  }
+  .kingdom-mobile-bottom-bar {
+    display: flex;
+  }
+  .tv-kingdom-workspace {
+    padding-bottom: 74px;
+  }
+  .tv-kingdom-content {
+    padding: 16px 12px 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .kingdom-topbar {
+    padding: 8px 12px;
+    min-height: 60px;
+  }
+  .brand-name {
+    font-size: 15px;
+  }
+  .kingdom-brand-mark {
+    width: 36px;
+    height: 36px;
+  }
+}

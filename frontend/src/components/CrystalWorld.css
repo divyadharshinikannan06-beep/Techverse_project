@@ -1,0 +1,750 @@
+/* ============================================================
+   TECH KINGDOM MAP — CRYSTALWORLD STYLES
+   Cyber-Fantasy Technology Progression Map
+   ============================================================ */
+
+.tech-kingdom-map-panel {
+  position: relative;
+  min-width: 0;
+  padding: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 24px;
+  background:
+    radial-gradient(ellipse at 50% 45%, rgba(79, 70, 229, 0.18), transparent 58%),
+    radial-gradient(ellipse at 85% 15%, rgba(6, 182, 212, 0.12), transparent 45%),
+    linear-gradient(155deg, #0d1538, #070e28 65%, #05091e);
+  box-shadow:
+    0 20px 60px rgba(2, 6, 23, 0.75),
+    0 0 0 1px rgba(168, 85, 247, 0.12) inset,
+    0 0 40px rgba(124, 58, 237, 0.1);
+}
+
+/* Header */
+.kingdom-map-header {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.kingdom-crest-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  padding: 3px 10px;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  border-radius: 999px;
+  background: rgba(147, 51, 234, 0.14);
+  color: #c084fc;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.crest-icon {
+  color: #22d3ee;
+}
+
+.map-header-left h2 {
+  margin: 0;
+  color: #f8fafc;
+  font-size: clamp(20px, 2.6vw, 26px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 20px rgba(168, 85, 247, 0.35);
+}
+
+.map-header-left p {
+  margin: 4px 0 0;
+  color: #94a3b8;
+  font-size: 11.5px;
+}
+
+.kingdom-map-legend {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  border: 1px solid rgba(139, 92, 246, 0.22);
+  border-radius: 12px;
+  background: rgba(10, 16, 42, 0.7);
+  font-size: 10.5px;
+  color: #cbd5e1;
+}
+
+.legend-chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend-chip.unlocked .legend-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22d3ee;
+  box-shadow: 0 0 8px #22d3ee;
+}
+
+.legend-chip.locked {
+  color: #94a3b8;
+}
+
+.legend-counter {
+  padding-left: 10px;
+  border-left: 1px solid rgba(139, 92, 246, 0.25);
+  color: #a855f7;
+  font-weight: 600;
+}
+
+/* ============================================================
+   MAP VIEWPORT & CANVAS
+   ============================================================ */
+
+.kingdom-map-canvas {
+  position: relative;
+  min-height: 620px;
+  margin-top: 10px;
+  overflow: hidden;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+/* Grid overlay background */
+.kingdom-map-canvas::before {
+  position: absolute;
+  inset: -10px;
+  content: '';
+  opacity: 0.22;
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.12) 1px, transparent 1px);
+  background-size: 38px 38px;
+  mask-image: radial-gradient(ellipse at 50% 50%, black 15%, transparent 75%);
+  pointer-events: none;
+  transform: translate3d(var(--parallax-bg-x, 0px), var(--parallax-bg-y, 0px), 0);
+  transition: transform 0.35s ease-out;
+}
+
+.kingdom-map-atmosphere {
+  position: absolute;
+  top: 20%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(147, 51, 234, 0.2), rgba(6, 182, 212, 0.1) 45%, transparent 75%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+/* Stars Dust */
+.map-dust-star {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: #ffffff;
+}
+
+.map-dust-star.dust-1 {
+  top: 18%;
+  left: 32%;
+  width: 3px;
+  height: 3px;
+  box-shadow: 0 0 10px #22d3ee;
+  animation: map-dust-float 8s ease-in-out infinite alternate;
+}
+.map-dust-star.dust-2 {
+  top: 65%;
+  left: 18%;
+  width: 2.5px;
+  height: 2.5px;
+  box-shadow: 0 0 8px #a855f7;
+  animation: map-dust-float 10s ease-in-out infinite alternate -3s;
+}
+.map-dust-star.dust-3 {
+  top: 35%;
+  right: 22%;
+  width: 3px;
+  height: 3px;
+  box-shadow: 0 0 10px #f472b6;
+  animation: map-dust-float 9s ease-in-out infinite alternate -5s;
+}
+.map-dust-star.dust-4 {
+  bottom: 15%;
+  right: 35%;
+  width: 2px;
+  height: 2px;
+  box-shadow: 0 0 8px #38bdf8;
+  animation: map-dust-float 7s ease-in-out infinite alternate -2s;
+}
+
+@keyframes map-dust-float {
+  0% { transform: translateY(0); opacity: 0.3; }
+  100% { transform: translateY(-12px); opacity: 0.9; }
+}
+
+/* ============================================================
+   SVG LEY LINES / CONNECTOR PATHS
+   ============================================================ */
+
+.kingdom-ley-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ley-path {
+  fill: none;
+  stroke: rgba(139, 92, 246, 0.4);
+  stroke-width: 0.5;
+  stroke-dasharray: 1.5 1.5;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 4px rgba(147, 51, 234, 0.6));
+}
+
+.ley-path.cyan {
+  stroke: rgba(34, 211, 238, 0.55);
+  filter: drop-shadow(0 0 5px rgba(34, 211, 238, 0.6));
+}
+.ley-path.blue {
+  stroke: rgba(56, 189, 248, 0.5);
+  filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.5));
+}
+.ley-path.mint {
+  stroke: rgba(45, 212, 191, 0.5);
+  filter: drop-shadow(0 0 5px rgba(45, 212, 191, 0.5));
+}
+.ley-path.locked {
+  stroke: rgba(100, 116, 139, 0.25);
+  stroke-dasharray: 0.8 1.8;
+  filter: none;
+}
+
+.ley-traveler {
+  fill: #f8fafc;
+  filter: drop-shadow(0 0 6px #22d3ee);
+}
+.ley-traveler.violet {
+  fill: #e9d5ff;
+  filter: drop-shadow(0 0 6px #c084fc);
+}
+.ley-traveler.pink {
+  fill: #fce7f3;
+  filter: drop-shadow(0 0 6px #f472b6);
+}
+
+/* ============================================================
+   CENTRAL CITADEL (TECHVERSE CASTLE)
+   ============================================================ */
+
+.kingdom-central-citadel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  display: grid;
+  justify-items: center;
+  width: 260px;
+  padding: 0 12px 14px;
+  border: 0;
+  background: transparent;
+  color: #f8fafc;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  translate: var(--parallax-citadel-x, 0px) var(--parallax-citadel-y, 0px);
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.kingdom-central-citadel:hover,
+.kingdom-central-citadel:focus-visible {
+  filter: drop-shadow(0 0 24px rgba(168, 85, 247, 0.65));
+}
+
+.citadel-castle-frame {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 220px;
+  height: 145px;
+  overflow: hidden;
+  border-radius: 26px;
+}
+
+.citadel-castle-frame img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 24px rgba(34, 211, 238, 0.35));
+  animation: citadel-levitate 6s ease-in-out infinite;
+  transition: transform 0.25s ease;
+}
+
+@keyframes citadel-levitate {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.citadel-core-glow {
+  position: absolute;
+  inset: 15% 10% 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(147, 51, 234, 0.4), rgba(6, 182, 212, 0.2) 60%, transparent 75%);
+  filter: blur(28px);
+  pointer-events: none;
+}
+
+.citadel-orbit {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  width: 250px;
+  height: 75px;
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%) rotate(-16deg);
+  animation: citadel-orbit-turn 32s linear infinite;
+}
+
+.citadel-orbit.orbit-2 {
+  width: 210px;
+  height: 105px;
+  border-color: rgba(168, 85, 247, 0.35);
+  transform: translate(-50%, -50%) rotate(34deg);
+  animation-duration: 40s;
+  animation-direction: reverse;
+}
+
+@keyframes citadel-orbit-turn {
+  to { transform: translate(-50%, -50%) rotate(344deg); }
+}
+
+.citadel-light-pillar {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  width: 2px;
+  height: 140px;
+  background: linear-gradient(180deg, transparent, rgba(34, 211, 238, 0.6), rgba(168, 85, 247, 0.3), transparent);
+  filter: blur(1px);
+  opacity: 0.65;
+  pointer-events: none;
+  transform: translateX(-50%);
+  animation: citadel-pillar-pulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes citadel-pillar-pulse {
+  to { opacity: 0.3; transform: translateX(-50%) scaleY(0.85); }
+}
+
+.citadel-energy-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 10px #22d3ee;
+  pointer-events: none;
+  animation: citadel-particle-float 4.5s ease-in-out infinite;
+}
+
+.citadel-energy-particle.particle-1 { top: 32%; left: 16%; }
+.citadel-energy-particle.particle-2 { top: 46%; right: 14%; animation-delay: -1.5s; }
+.citadel-energy-particle.particle-3 { top: 68%; left: 82%; animation-delay: -3s; }
+
+@keyframes citadel-particle-float {
+  50% { transform: translateY(-10px); opacity: 0.4; }
+}
+
+.citadel-emblem {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 3px;
+  color: #c084fc;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+}
+
+.citadel-castle-mini {
+  color: #22d3ee;
+}
+
+.kingdom-central-citadel strong {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #f8fafc;
+}
+
+.kingdom-central-citadel small {
+  color: #94a3b8;
+  font-size: 10px;
+}
+
+/* ============================================================
+   KINGDOM REALM CARDS (ISLANDS)
+   ============================================================ */
+
+.kingdom-island-card {
+  position: absolute;
+  top: var(--island-y);
+  left: var(--island-x);
+  z-index: 3;
+  display: grid;
+  justify-items: center;
+  width: 160px;
+  gap: 5px;
+  padding: 12px 12px 14px;
+  border: 1.5px solid color-mix(in srgb, var(--realm-accent, #8b5cf6), transparent 60%);
+  border-radius: 18px;
+  background: linear-gradient(155deg, rgba(16, 24, 56, 0.98), rgba(8, 14, 38, 0.98));
+  color: #f8fafc;
+  text-align: center;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  translate: var(--parallax-islands-x, 0px) var(--parallax-islands-y, 0px);
+  transform-style: preserve-3d;
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.5),
+    0 4px 0 rgba(4, 8, 22, 0.9);
+  animation: realm-island-hover 7s ease-in-out infinite;
+  animation-delay: calc(var(--island-order, 0) * -0.9s);
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+@keyframes realm-island-hover {
+  0%, 100% {
+    translate: var(--parallax-islands-x, 0px) var(--parallax-islands-y, 0px);
+  }
+  50% {
+    translate: var(--parallax-islands-x, 0px) calc(var(--parallax-islands-y, 0px) - 6px);
+  }
+}
+
+/* Domain Color Themes */
+.kingdom-island-card.violet { --realm-accent: #a855f7; }
+.kingdom-island-card.cyan { --realm-accent: #22d3ee; }
+.kingdom-island-card.blue { --realm-accent: #38bdf8; }
+.kingdom-island-card.electric { --realm-accent: #6366f1; }
+.kingdom-island-card.mint { --realm-accent: #2dd4bf; }
+.kingdom-island-card.pink { --realm-accent: #ec4899; }
+
+/* 3D Platform base */
+.kingdom-island-platform {
+  position: absolute;
+  right: 8px;
+  bottom: -9px;
+  left: 8px;
+  height: 20px;
+  border: 1px solid color-mix(in srgb, var(--realm-accent), transparent 45%);
+  border-radius: 50%;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--realm-accent), #08132d 65%), #050b1e);
+  box-shadow:
+    0 12px 18px rgba(0, 0, 0, 0.45),
+    0 0 20px color-mix(in srgb, var(--realm-accent), transparent 60%);
+  transform: perspective(140px) rotateX(34deg) translateZ(-4px);
+}
+
+.kingdom-island-platform::before {
+  position: absolute;
+  inset: 2px 12px auto;
+  height: 1.5px;
+  content: '';
+  background: color-mix(in srgb, var(--realm-accent), transparent 15%);
+  box-shadow: 0 0 10px var(--realm-accent);
+}
+
+/* Floating shard crystals */
+.kingdom-floating-crystal {
+  position: absolute;
+  z-index: 2;
+  border: 1px solid color-mix(in srgb, var(--realm-accent), transparent 30%);
+  background: linear-gradient(145deg, color-mix(in srgb, var(--realm-accent), white 15%), color-mix(in srgb, var(--realm-accent), transparent 65%));
+  clip-path: polygon(50% 0, 100% 36%, 70% 100%, 15% 75%, 0 32%);
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--realm-accent), transparent 40%));
+  pointer-events: none;
+  animation: crystal-shard-spin 9s ease-in-out infinite;
+}
+
+.kingdom-floating-crystal.shard-1 {
+  top: 14px;
+  left: 12px;
+  width: 8px;
+  height: 14px;
+}
+.kingdom-floating-crystal.shard-2 {
+  top: 32px;
+  right: 10px;
+  width: 6px;
+  height: 10px;
+  animation-delay: -3.5s;
+}
+
+@keyframes crystal-shard-spin {
+  50% { transform: rotateY(70deg) rotateZ(18deg) translateY(-4px); opacity: 0.65; }
+}
+
+/* Progress Ring & Icons */
+.kingdom-progress-ring {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from -90deg,
+    var(--realm-accent) 0%,
+    var(--realm-accent) var(--ring-progress),
+    rgba(148, 163, 184, 0.18) var(--ring-progress) 100%
+  );
+  box-shadow: 0 0 16px color-mix(in srgb, var(--realm-accent), transparent 70%);
+}
+
+.ring-inner {
+  display: grid;
+  place-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #080f28;
+  color: var(--realm-accent);
+  border: 1px solid color-mix(in srgb, var(--realm-accent), transparent 65%);
+}
+
+.complete-glyph {
+  color: #4ade80;
+  filter: drop-shadow(0 0 6px #4ade80);
+}
+
+.island-locked-seal {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(148, 163, 184, 0.35);
+  background: rgba(15, 23, 42, 0.9);
+  color: #94a3b8;
+}
+
+/* Island Meta */
+.kingdom-island-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 100%;
+}
+
+.kingdom-realm-badge {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #94a3b8;
+  text-transform: uppercase;
+}
+
+.kingdom-island-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: #f1f5f9;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kingdom-island-count {
+  font-size: 9.5px;
+  color: #94a3b8;
+}
+
+/* Energy Bar */
+.kingdom-island-energy {
+  width: 76px;
+  height: 3.5px;
+  margin-top: 2px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.15);
+  overflow: hidden;
+}
+
+.kingdom-island-energy i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--realm-accent), #22d3ee);
+  box-shadow: 0 0 8px var(--realm-accent);
+}
+
+/* Tooltip */
+.kingdom-island-tooltip {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 180px;
+  padding: 10px 12px;
+  border: 1px solid color-mix(in srgb, var(--realm-accent), transparent 50%);
+  border-radius: 12px;
+  background: rgba(8, 14, 38, 0.98);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -6px);
+  transition: all 0.2s ease;
+}
+
+.tooltip-tag {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--realm-accent);
+  text-transform: uppercase;
+}
+
+.kingdom-island-tooltip strong {
+  font-size: 11px;
+  color: #f8fafc;
+}
+
+.kingdom-island-tooltip small {
+  color: #94a3b8;
+  font-size: 9.5px;
+}
+
+.tooltip-status {
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px solid rgba(139, 92, 246, 0.15);
+  font-size: 9.5px;
+  font-weight: 700;
+}
+
+.tooltip-status.status-completed { color: #4ade80; }
+.tooltip-status.status-in-progress { color: #38bdf8; }
+.tooltip-status.status-available { color: #c084fc; }
+.tooltip-status.status-locked { color: #94a3b8; }
+
+/* Hover States */
+.kingdom-island-card:not(:disabled):hover,
+.kingdom-island-card:focus-visible {
+  z-index: 6;
+  transform: translate(-50%, calc(-50% - 6px)) scale(1.05);
+  border-color: color-mix(in srgb, var(--realm-accent), transparent 15%);
+  box-shadow:
+    0 20px 42px rgba(0, 0, 0, 0.6),
+    0 0 28px color-mix(in srgb, var(--realm-accent), transparent 45%);
+}
+
+.kingdom-island-card:not(:disabled):hover .kingdom-island-tooltip,
+.kingdom-island-card:focus-visible .kingdom-island-tooltip {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* Locked Realm Special Styling */
+.kingdom-island-card.locked {
+  filter: saturate(0.35) brightness(0.85);
+  opacity: 0.68;
+}
+
+.kingdom-island-card.locked:hover {
+  filter: saturate(0.6) brightness(1);
+  opacity: 0.9;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN BREAKPOINTS
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .kingdom-map-canvas {
+    min-height: 520px;
+  }
+  .kingdom-island-card {
+    width: 140px;
+  }
+  .kingdom-central-citadel {
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+}
+
+@media (max-width: 720px) {
+  .tech-kingdom-map-panel {
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .kingdom-map-canvas {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    min-height: 0;
+    margin-top: 18px;
+    overflow: visible;
+  }
+
+  .kingdom-ley-lines {
+    display: none;
+  }
+
+  .kingdom-central-citadel {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    grid-column: 1 / -1;
+    transform: none;
+    margin-bottom: 6px;
+  }
+
+  .citadel-castle-frame {
+    width: 200px;
+    height: 130px;
+  }
+
+  .kingdom-island-card {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    min-height: 120px;
+    transform: none;
+  }
+
+  .kingdom-island-card:not(:disabled):hover {
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  .kingdom-island-tooltip {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kingdom-island-card,
+  .citadel-castle-frame img,
+  .citadel-orbit,
+  .map-dust-star,
+  .kingdom-floating-crystal {
+    animation: none !important;
+  }
+}

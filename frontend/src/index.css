@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+@import './styles/design-system.css';
+
+:root {
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--tv-text);
+  background-color: var(--tv-bg);
+  --tv-bg: #0B0F1A;
+  --tv-bg-deep: #060913;
+  --tv-bg-secondary: #10162B;
+  --tv-card: #182038;
+  --tv-card-hover: #1F2A4A;
+  --tv-panel: var(--tv-card);
+  --tv-panel-strong: var(--tv-card-hover);
+  --tv-border: rgba(123, 97, 255, 0.22);
+  --tv-line: var(--tv-border);
+  --tv-text: #F8FAFC;
+  --tv-text-secondary: #CBD5E1;
+  --tv-secondary-text: var(--tv-text-secondary);
+  --tv-text-muted: #8E9AB0;
+  --tv-muted: var(--tv-text-muted);
+  --tv-primary: #7B61FF;
+  --tv-violet: var(--tv-primary);
+  --tv-indigo: #6343ED;
+  --tv-cyan: #22D3EE;
+  --tv-blue: #38BDF8;
+  --tv-purple-light: #9B86FF;
+  --tv-highlight: var(--tv-cyan);
+  --tv-success: #10B981;
+  --tv-warning: #F59E0B;
+  --tv-error: #EF4444;
+  --tv-teal: var(--tv-cyan);
+  --tv-pink: #EC4899;
+  --tv-mint: #2DD4BF;
+  --tv-gold: #F59E0B;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 15% -10%, rgba(124, 58, 237, .1), transparent 30rem),
+    radial-gradient(circle at 90% 90%, rgba(34, 211, 238, .05), transparent 28rem),
+    var(--tv-bg);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid var(--tv-highlight);
+  outline-offset: 3px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+#root {
+  min-height: 100vh;
+}

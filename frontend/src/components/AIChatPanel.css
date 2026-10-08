@@ -1,0 +1,934 @@
+/* ============================================================
+   AI WIZARD TOWER — AIChatPanel Styles
+   Cyber-fantasy Kingdom AI Mentor Interface
+   ============================================================ */
+
+.ai-wizard-tower-card {
+  position: relative;
+  min-width: 0;
+  margin: 0 0 24px;
+  padding: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  border-radius: 24px;
+  background:
+    radial-gradient(ellipse at 85% 10%, rgba(124, 58, 237, 0.22), transparent 48%),
+    radial-gradient(ellipse at 15% 90%, rgba(34, 211, 238, 0.16), transparent 52%),
+    linear-gradient(155deg, rgba(16, 24, 56, 0.95), rgba(8, 14, 34, 0.98));
+  box-shadow:
+    0 16px 48px rgba(3, 7, 24, 0.75),
+    0 0 0 1px rgba(168, 85, 247, 0.15) inset,
+    0 0 35px rgba(124, 58, 237, 0.12);
+  backdrop-filter: blur(20px);
+}
+
+/* Atmospheric Floating Energy Rings */
+.tower-energy-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.tower-energy-ring.ring-1 {
+  top: -120px;
+  right: -100px;
+  width: 380px;
+  height: 380px;
+  border: 1px solid rgba(168, 85, 247, 0.18);
+  animation: tower-ring-orbit 38s linear infinite;
+}
+
+.tower-energy-ring.ring-2 {
+  bottom: -140px;
+  left: -120px;
+  width: 440px;
+  height: 440px;
+  border: 1px dashed rgba(34, 211, 238, 0.14);
+  animation: tower-ring-orbit 48s linear infinite reverse;
+}
+
+@keyframes tower-ring-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.tower-crystal-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.02) 40%,
+    rgba(168, 85, 247, 0.04) 50%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+/* ============================================================
+   TOWER HEADER
+   ============================================================ */
+
+.ai-tower-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 22px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.22);
+}
+
+.tower-orb-container {
+  position: relative;
+  width: 54px;
+  height: 54px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+}
+
+.tower-orb-halo {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.45), rgba(34, 211, 238, 0.2) 60%, transparent 75%);
+  filter: blur(8px);
+  animation: tower-halo-pulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes tower-halo-pulse {
+  0% { transform: scale(0.92); opacity: 0.6; }
+  100% { transform: scale(1.15); opacity: 1; }
+}
+
+.tower-orb-crystal {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid rgba(192, 132, 252, 0.6);
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.4), rgba(6, 182, 212, 0.25));
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.45), inset 0 0 14px rgba(255, 255, 255, 0.2);
+  color: #f3e8ff;
+}
+
+.tower-wand-icon {
+  filter: drop-shadow(0 0 8px #c084fc);
+  animation: tower-wand-float 5s ease-in-out infinite alternate;
+}
+
+@keyframes tower-wand-float {
+  0% { transform: translateY(1px) rotate(-4deg); }
+  100% { transform: translateY(-3px) rotate(4deg); }
+}
+
+.tower-sparkle-a {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  color: #67e8f9;
+  filter: drop-shadow(0 0 6px #22d3ee);
+  animation: tower-sparkle-blink 2.4s ease-in-out infinite;
+}
+
+.tower-sparkle-b {
+  position: absolute;
+  bottom: 8px;
+  left: 7px;
+  color: #f472b6;
+  filter: drop-shadow(0 0 6px #ec4899);
+  animation: tower-sparkle-blink 2.4s ease-in-out infinite 1.2s;
+}
+
+@keyframes tower-sparkle-blink {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.tower-title-block {
+  min-width: 0;
+  flex: 1;
+}
+
+.tower-kicker-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 4px;
+  padding: 3px 9px;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  border-radius: 999px;
+  background: rgba(147, 51, 234, 0.15);
+  color: #d8b4fe;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.tower-kicker-gem {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22d3ee;
+  box-shadow: 0 0 8px #22d3ee;
+}
+
+.tower-title-block h2 {
+  margin: 0;
+  color: #f8fafc;
+  font-size: clamp(20px, 2.8vw, 26px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 20px rgba(192, 132, 252, 0.35);
+}
+
+.tower-subtitle {
+  margin: 4px 0 0;
+  color: #94a3b8;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.tower-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tower-clear-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 12px;
+  background: rgba(18, 26, 54, 0.7);
+  color: #cbd5e1;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tower-clear-btn:hover:not(:disabled) {
+  border-color: rgba(239, 68, 68, 0.5);
+  background: rgba(239, 68, 68, 0.12);
+  color: #fca5a5;
+  box-shadow: 0 0 14px rgba(239, 68, 68, 0.25);
+}
+
+.tower-clear-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ============================================================
+   CHAMBER LAYOUT
+   ============================================================ */
+
+.ai-tower-chamber {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
+  gap: 18px;
+}
+
+/* Runes Sidebar */
+.ai-tower-runes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  border: 1px solid rgba(139, 92, 246, 0.22);
+  border-radius: 18px;
+  background: rgba(8, 14, 34, 0.75);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.tower-rune-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #c084fc;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.rune-spark {
+  color: #22d3ee;
+}
+
+.tower-rune-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.tower-rune-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border: 1px solid rgba(129, 140, 248, 0.18);
+  border-radius: 12px;
+  background: rgba(18, 25, 52, 0.6);
+  color: #cbd5e1;
+  font-size: 11.5px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rune-btn-icon {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  background: rgba(147, 51, 234, 0.22);
+  color: #a855f7;
+  transition: all 0.2s ease;
+}
+
+.tower-rune-btn:hover:not(:disabled) {
+  border-color: rgba(34, 211, 238, 0.5);
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.25), rgba(6, 182, 212, 0.15));
+  color: #ffffff;
+  transform: translateX(3px);
+  box-shadow: 0 4px 14px rgba(6, 182, 212, 0.18);
+}
+
+.tower-rune-btn:hover .rune-btn-icon {
+  background: rgba(34, 211, 238, 0.25);
+  color: #22d3ee;
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.4);
+}
+
+.tower-focus-realm {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: auto;
+  padding: 12px;
+  border-top: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.realm-tag {
+  color: #94a3b8;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.tower-focus-realm strong {
+  color: #38bdf8;
+  font-size: 12px;
+  font-weight: 600;
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+}
+
+.realm-greeting {
+  color: #a5b4fc;
+  font-size: 10.5px;
+}
+
+/* ============================================================
+   MESSAGE CHAMBER / SCROLL
+   ============================================================ */
+
+.ai-tower-scroll {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.tower-messages-viewport {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 400px;
+  max-height: 520px;
+  padding: 20px;
+  overflow-y: auto;
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: 18px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(124, 58, 237, 0.1), transparent 65%),
+    rgba(6, 11, 28, 0.85);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.4);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(168, 85, 247, 0.4) transparent;
+}
+
+.tower-messages-viewport::-webkit-scrollbar {
+  width: 6px;
+}
+.tower-messages-viewport::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background: rgba(168, 85, 247, 0.35);
+}
+
+/* Empty Sanctum */
+.tower-empty-sanctum {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+  max-width: 460px;
+  padding: 30px 16px;
+}
+
+.empty-crystal-core {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 16px;
+  border: 1.5px solid rgba(34, 211, 238, 0.4);
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.25), rgba(6, 182, 212, 0.2));
+  color: #38bdf8;
+  box-shadow: 0 0 25px rgba(34, 211, 238, 0.3);
+}
+
+.empty-core-ring {
+  position: absolute;
+  inset: -6px;
+  border: 1px dashed rgba(168, 85, 247, 0.35);
+  border-radius: 24px;
+  animation: tower-ring-orbit 24s linear infinite;
+}
+
+.tower-empty-sanctum h3 {
+  margin: 0 0 8px;
+  color: #f1f5f9;
+  font-size: 16px;
+  font-weight: 700;
+  text-shadow: 0 0 16px rgba(168, 85, 247, 0.4);
+}
+
+.tower-empty-sanctum p {
+  margin: 0 0 20px;
+  color: #94a3b8;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.empty-rune-prompts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.empty-rune-prompts button {
+  padding: 7px 12px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 999px;
+  background: rgba(18, 25, 52, 0.7);
+  color: #e2e8f0;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.empty-rune-prompts button:hover {
+  border-color: rgba(34, 211, 238, 0.6);
+  background: rgba(6, 182, 212, 0.15);
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.3);
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   DIALOGUE CARDS (USER & AI)
+   ============================================================ */
+
+.tower-dialogue-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  width: 100%;
+  max-width: 92%;
+  padding: 14px 18px;
+  border-radius: 18px;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.tower-dialogue-card.user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  background: linear-gradient(135deg, rgba(30, 27, 75, 0.75), rgba(49, 46, 129, 0.55));
+  box-shadow: 0 8px 24px rgba(3, 7, 24, 0.5), 0 0 15px rgba(99, 102, 241, 0.15);
+  color: #f1f5f9;
+}
+
+.tower-dialogue-card.assistant {
+  align-self: flex-start;
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  background: linear-gradient(145deg, rgba(15, 23, 50, 0.9), rgba(12, 19, 42, 0.95));
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(34, 211, 238, 0.1),
+    0 0 24px rgba(147, 51, 234, 0.1) inset;
+  color: #e2e8f0;
+}
+
+.dialogue-crest {
+  flex: 0 0 auto;
+}
+
+.crest-oracle,
+.crest-seeker {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+}
+
+.crest-oracle {
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.35), rgba(6, 182, 212, 0.25));
+  color: #22d3ee;
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.3);
+}
+
+.crest-seeker {
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.35), rgba(147, 51, 234, 0.25));
+  color: #c084fc;
+}
+
+.dialogue-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.dialogue-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.dialogue-author {
+  color: #cbd5e1;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.dialogue-pill {
+  padding: 1.5px 7px;
+  border-radius: 999px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  background: rgba(34, 211, 238, 0.12);
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  color: #38bdf8;
+}
+
+.dialogue-pill.thinking {
+  background: rgba(168, 85, 247, 0.15);
+  border-color: rgba(168, 85, 247, 0.3);
+  color: #d8b4fe;
+}
+
+/* ============================================================
+   FORMATTED MARKDOWN & CODE BLOCKS
+   ============================================================ */
+
+.ai-formatted-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ai-text-block p {
+  margin: 0 0 8px;
+}
+.ai-text-block p:last-child {
+  margin-bottom: 0;
+}
+
+.inline-code {
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: rgba(139, 92, 246, 0.18);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: #67e8f9;
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: 12px;
+}
+
+.ai-bullet-list {
+  margin: 6px 0;
+  padding-left: 20px;
+  list-style: square;
+}
+
+.ai-bullet-list li {
+  margin-bottom: 5px;
+  color: #cbd5e1;
+}
+
+.ai-bullet-list strong {
+  color: #38bdf8;
+}
+
+.ai-code-block {
+  margin: 10px 0;
+  border: 1px solid rgba(139, 92, 246, 0.28);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #05091a;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.ai-code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.18);
+  background: rgba(18, 25, 52, 0.7);
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.ai-code-header span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #38bdf8;
+}
+
+.ai-code-copy {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 6px;
+  background: rgba(30, 41, 75, 0.6);
+  color: #cbd5e1;
+  font-size: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ai-code-copy:hover {
+  border-color: rgba(34, 211, 238, 0.4);
+  color: #ffffff;
+}
+
+.ai-code-body {
+  margin: 0;
+  padding: 14px;
+  overflow-x: auto;
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: 12px;
+  line-height: 1.55;
+  color: #f1f5f9;
+}
+
+/* ============================================================
+   TYPING INDICATOR
+   ============================================================ */
+
+.tower-thinking-card {
+  border-color: rgba(168, 85, 247, 0.4);
+  background: linear-gradient(135deg, rgba(16, 24, 52, 0.85), rgba(24, 16, 48, 0.9));
+}
+
+.thinking-pulse {
+  animation: tower-crest-glow 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes tower-crest-glow {
+  0% { box-shadow: 0 0 8px rgba(168, 85, 247, 0.3); }
+  100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.8), 0 0 10px #22d3ee; }
+}
+
+.tower-typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+}
+
+.gem-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 8px #22d3ee;
+  animation: tower-dot-bounce 1.1s ease-in-out infinite alternate;
+}
+
+.gem-dot.dot-2 {
+  animation-delay: 0.22s;
+  background: #a855f7;
+  box-shadow: 0 0 8px #c084fc;
+}
+
+.gem-dot.dot-3 {
+  animation-delay: 0.44s;
+  background: #f472b6;
+  box-shadow: 0 0 8px #f472b6;
+}
+
+@keyframes tower-dot-bounce {
+  0% { transform: translateY(0); opacity: 0.4; }
+  100% { transform: translateY(-6px); opacity: 1; }
+}
+
+.thinking-text {
+  color: #a5b4fc;
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* ============================================================
+   ERROR BARRIER
+   ============================================================ */
+
+.tower-error-barrier {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 12px 0;
+  padding: 12px 16px;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: 14px;
+  background: rgba(127, 29, 29, 0.2);
+  color: #fca5a5;
+  font-size: 12px;
+}
+
+.error-barrier-msg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tower-retry-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  border-radius: 8px;
+  background: rgba(185, 28, 28, 0.25);
+  color: #fee2e2;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tower-retry-btn:hover {
+  background: rgba(185, 28, 28, 0.4);
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
+}
+
+/* ============================================================
+   RUNE COMPOSER & FOOTER
+   ============================================================ */
+
+.tower-composer-chamber {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  margin-top: 14px;
+  padding: 8px 12px;
+  border: 1.5px solid rgba(139, 92, 246, 0.35);
+  border-radius: 16px;
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(124, 58, 237, 0.08), transparent 70%),
+    rgba(7, 12, 30, 0.95);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(34, 211, 238, 0.1) inset;
+  transition: all 0.2s ease;
+}
+
+.tower-composer-chamber:focus-within {
+  border-color: rgba(34, 211, 238, 0.65);
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(34, 211, 238, 0.25);
+}
+
+.tower-composer-chamber textarea {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  max-height: 140px;
+  padding: 10px 4px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #f8fafc;
+  font-family: inherit;
+  font-size: 13.5px;
+  line-height: 1.5;
+  resize: none;
+}
+
+.tower-composer-chamber textarea::placeholder {
+  color: #64748b;
+}
+
+.tower-cast-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid rgba(192, 132, 252, 0.4);
+  border-radius: 12px;
+  background: linear-gradient(135deg, #7c3aed, #4f46e5 50%, #06b6d4);
+  box-shadow: 0 4px 18px rgba(124, 58, 237, 0.45);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tower-cast-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.15);
+  box-shadow: 0 6px 24px rgba(34, 211, 238, 0.45);
+}
+
+.tower-cast-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.cast-sparkle {
+  animation: tower-sparkle-blink 2s ease-in-out infinite;
+}
+
+.tower-composer-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+  padding: 0 6px;
+  color: #64748b;
+  font-size: 10.5px;
+}
+
+.footer-gemini-badge {
+  color: #a855f7;
+  font-weight: 500;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .ai-tower-chamber {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ai-tower-runes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tower-rune-heading {
+    grid-column: 1 / -1;
+  }
+
+  .tower-focus-realm {
+    grid-column: 1 / -1;
+  }
+
+  .tower-messages-viewport {
+    min-height: 350px;
+    max-height: 450px;
+  }
+}
+
+@media (max-width: 600px) {
+  .ai-wizard-tower-card {
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .ai-tower-header {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .tower-clear-btn span {
+    display: none;
+  }
+
+  .ai-tower-runes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tower-messages-viewport {
+    padding: 12px;
+    min-height: 320px;
+    max-height: 400px;
+  }
+
+  .tower-dialogue-card {
+    max-width: 96%;
+    padding: 10px 12px;
+  }
+
+  .tower-cast-button span {
+    display: none;
+  }
+
+  .tower-composer-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tower-energy-ring,
+  .tower-wand-icon,
+  .tower-sparkle-a,
+  .tower-sparkle-b,
+  .empty-core-ring,
+  .gem-dot {
+    animation: none !important;
+  }
+}

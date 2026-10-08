@@ -1,0 +1,155 @@
+const moduleQuestions = {
+  'cloud-fundamentals': [
+    ['A team uses storage and compute through a provider API and pays for usage. Which model is this?', ['On-premises only', 'Cloud computing', 'A local spreadsheet', 'A source-control branch']],
+    ['Which service model usually gives a team virtual machines while it manages the operating system?', ['SaaS', 'PaaS', 'IaaS', 'DNS']],
+    ['A provider operates the data-center hardware. Which responsibility still belongs to the customer?', ['Configuring account access', 'Repairing the provider rack', 'Replacing the provider switch', 'Cooling the facility']],
+    ['A company combines its private data center with public cloud services. What deployment pattern is this?', ['Single-tenant laptop', 'Offline batch', 'Edge-only', 'Hybrid cloud']],
+    ['Why might a service scale cloud capacity during a short traffic spike?', ['To increase maintenance work', 'To match resources to demand', 'To remove network access', 'To prevent monitoring']],
+  ],
+  'cloud-virtual-machines': [
+    ['What does a hypervisor help provide?', ['A database query language', 'A web browser theme', 'Isolated virtual machines on host hardware', 'A source-code review']],
+    ['What is a VM image commonly used for?', ['A repeatable operating-system starting point', 'A firewall rule', 'A billing invoice', 'A network route']],
+    ['A test server is idle most of the day. What is a sensible response?', ['Increase it to the largest size', 'Disable all monitoring', 'Duplicate every disk', 'Review usage and right-size it']],
+    ['Which resource is part of a VM instance configuration?', ['CSS selector', 'Virtual CPU and memory', 'HTML landmark', 'Quiz score']],
+    ['Why are isolated VMs useful on shared hardware?', ['They remove the operating system', 'They make backups unnecessary', 'They separate workloads and resource contexts', 'They eliminate network security']],
+  ],
+  'cloud-networking': [
+    ['What is the main purpose of a subnet?', ['To encrypt an application binary', 'To divide a virtual network address space', 'To store container images', 'To compile a route table']],
+    ['A route table primarily determines where?', ['A user password is stored', 'A VM image is built', 'A browser renders CSS', 'Network packets are directed']],
+    ['Which rule follows least privilege for a database?', ['Allow only required application traffic', 'Allow every public source', 'Open every port', 'Disable audit logs']],
+    ['Where should an internal database usually be placed?', ['Directly on a public address', 'In an unrelated region only', 'In a private subnet', 'Inside a browser tab']],
+    ['What does a network security rule commonly match?', ['Only a chart color', 'Source, protocol, and port', 'A lesson title', 'A CPU brand']],
+  ],
+  'cloud-containers': [
+    ['What is a container image?', ['A live database connection', 'A DNS record', 'A running process snapshot', 'An immutable template for container instances']],
+    ['Why add readiness checks to a deployment?', ['Route traffic only after an instance is ready', 'Increase image size', 'Expose secrets in logs', 'Skip health monitoring']],
+    ['Where should deployment secrets generally be provided?', ['Baked into a public image', 'Committed beside source code', 'Through a protected runtime secret mechanism', 'Added to a screenshot']],
+    ['What is a useful rollback signal?', ['A successful build number alone', 'A sustained increase in errors after rollout', 'A shorter module title', 'A full disk from old logs only']],
+    ['What is a benefit of rolling deployment?', ['Replace all instances without checks', 'Remove version history', 'Avoid monitoring', 'Gradually replace instances while checking health']],
+  ],
+  'web-fundamentals': [
+    ['Which technology describes the semantic structure of a page?', ['HTML', 'CSS', 'SQL', 'TLS']],
+    ['Which HTML element is the best semantic choice for a page main action?', ['span', 'div', 'button', 'style']],
+    ['What does CSS primarily control?', ['Database authorization', 'Presentation and layout', 'JWT signing', 'DNS resolution']],
+    ['What does a browser typically do after receiving HTML?', ['Hashes the user password', 'Creates a MongoDB collection', 'Runs a cloud VM', 'Parses the document and requests referenced resources']],
+    ['Why prefer semantic HTML?', ['It improves meaning and accessibility', 'It prevents all network errors', 'It replaces CSS', 'It stores server secrets']],
+  ],
+  'web-javascript': [
+    ['Which declaration is appropriate for a value that will not be reassigned?', ['var always', 'mutable', 'const', 'style']],
+    ['What is a function parameter?', ['A value provided to a function', 'A browser cookie policy', 'A CSS color', 'A route table']],
+    ['Which event is commonly used to handle a button activation?', ['resize-database', 'compile-css', 'network-close', 'click']],
+    ['Why validate input at the application boundary?', ['To make it harder to detect errors', 'To reject or normalize invalid data early', 'To avoid types', 'To bypass server checks']],
+    ['What does JSON.stringify do to a JavaScript value?', ['Encrypts it with a secret key', 'Stores it in MongoDB automatically', 'Serializes it as JSON text', 'Validates its business rules']],
+  ],
+  'web-react': [
+    ['What are props commonly used for?', ['Passing data from a parent to a component', 'Storing a database password', 'Routing packets', 'Creating a VM image']],
+    ['What is React state used for?', ['A static CSS file only', 'A JWT signature', 'A persistent database transaction', 'Values that change and affect rendered UI']],
+    ['Why should list items have stable keys?', ['To prevent rendering any list', 'To help React track item identity between updates', 'To replace component props', 'To encrypt the list']],
+    ['Which is a good component design principle?', ['Put unrelated page logic in every component', 'Duplicate all state everywhere', 'Give a component a focused responsibility', 'Keep secret values in rendered props']],
+    ['Where should a value shared by sibling components usually live?', ['In an appropriate common parent or shared store', 'In a random DOM node', 'In a CSS selector', 'In a module title']],
+  ],
+  'web-architecture': [
+    ['Where must authorization for a protected API be enforced?', ['Only in a hidden button', 'Only in CSS', 'Only in browser state', 'On the server']],
+    ['What is a narrow API contract?', ['An endpoint accepting arbitrary fields', 'An explicit request and response focused on one operation', 'An undocumented shared database', 'A route that returns secrets']],
+    ['Why should a client not submit the XP reward as authoritative?', ['The server should derive rewards from trusted module data', 'The browser cannot send numbers', 'XP is always public', 'It prevents JSON parsing']],
+    ['When should cached data be used?', ['Without considering freshness', 'For every private response', 'When freshness and privacy requirements are understood', 'Only when the server is unavailable']],
+    ['What should a robust client do when a request fails?', ['Assume success and award XP', 'Show recovery feedback and preserve state safely', 'Print server stack traces', 'Delete the user token unconditionally']],
+  ],
+  'ai-fundamentals': [
+    ['How does a supervised model learn?', ['From labeled examples', 'From CSS rules only', 'From network routes', 'From random server restarts']],
+    ['What does a model produce from its input?', ['A guaranteed truth', 'A database backup', 'A prediction or output based on learned parameters', 'A TLS certificate']],
+    ['Why review model outputs in a high-impact task?', ['Models never make errors', 'To remove all training data', 'To increase latency', 'Predictions can be uncertain or biased']],
+    ['What is a rule-based system primarily built from?', ['Learned embeddings only', 'Explicitly authored logic', 'Virtual subnets', 'Image layers']],
+    ['What can affect model reliability?', ['Data quality and fit to the task', 'Button border radius', 'Screen brightness only', 'File extension alone']],
+  ],
+  'ai-python': [
+    ['Why inspect data before model training?', ['To identify quality issues and understand variables', 'To guarantee perfect accuracy', 'To remove the need for evaluation', 'To hide missing values']],
+    ['Why keep validation examples separate from training examples?', ['To increase duplicated data', 'To avoid naming columns', 'To estimate behavior on unseen examples', 'To store passwords']],
+    ['What is data leakage?', ['A dashboard overflow', 'Accidentally using information unavailable at prediction time', 'A correct deployment', 'A CSS cascade']],
+    ['What makes an experiment reproducible?', ['Changing data without records', 'Using hidden random settings', 'Relying on memory', 'Recording data versions, settings, and metrics']],
+    ['How should missing values be handled?', ['With a deliberate documented strategy', 'Always replace them with zero without review', 'Ignore them in all cases', 'Delete the whole dataset automatically']],
+  ],
+  'ai-machine-learning': [
+    ['In supervised learning, what is a label?', ['A network address', 'A database index', 'The target output for an example', 'A chart legend only']],
+    ['What does overfitting mean?', ['A model performs well on training data but generalizes poorly', 'A server has too much storage', 'A dataset has labels', 'A neural network has layers']],
+    ['Why use a baseline model?', ['To avoid measuring performance', 'To reduce feature count automatically', 'To hide errors', 'To establish a simple comparison point']],
+    ['Which metric should be selected?', ['Always accuracy regardless of task', 'One that reflects the task and cost of errors', 'The fastest metric to compute only', 'A metric chosen after seeing test answers']],
+    ['What does a held-out test set help estimate?', ['Generalization to unseen examples', 'Training speed only', 'Image file size', 'Server availability']],
+  ],
+  'ai-neural-networks': [
+    ['What do neural network layers do?', ['Route internet packets', 'Store user sessions', 'Apply learned transformations to representations', 'Compile HTML']],
+    ['What is an activation function used for?', ['Adding non-linearity to a layer transformation', 'Encrypting network traffic', 'Creating a subnet', 'Saving quiz attempts']],
+    ['What does a loss function measure?', ['How long the lesson is', 'The number of deployment regions', 'The UI animation duration', 'Task error for model outputs']],
+    ['What does gradient-based optimization update?', ['Browser viewport size', 'Model parameters', 'Database credentials', 'Route paths']],
+    ['Why might a larger network not improve a task?', ['Complexity can exceed useful data or fail to generalize', 'Layers never learn', 'More parameters remove all bias', 'Compute cannot affect training']],
+  ],
+  'cyber-fundamentals': [
+    ['Which security goal concerns preventing unauthorized disclosure?', ['Confidentiality', 'Availability', 'Rendering', 'Portability']],
+    ['What is a vulnerability?', ['A guaranteed attack', 'An audit report', 'A weakness that may be exploited', 'A backup schedule']],
+    ['What is defense in depth?', ['Relying on one password', 'Disabling monitoring', 'Putting every service on a public network', 'Using multiple complementary security controls']],
+    ['Which goal is affected when a service cannot be used?', ['Confidentiality', 'Availability', 'Integrity', 'Compression']],
+    ['Why keep audit logs?', ['To support monitoring and investigation', 'To expose passwords', 'To bypass authorization', 'To prevent patching']],
+  ],
+  'cyber-authentication': [
+    ['Authentication answers which question?', ['What may this identity do?', 'Where is the database?', 'Who is presenting these credentials?', 'Which CSS rule applies?']],
+    ['Authorization determines what?', ['Whether an identity may perform an action', 'Whether a password is hashed', 'Whether a server has RAM', 'Whether HTML is semantic']],
+    ['What is multi-factor authentication?', ['Reusing a password many times', 'Using two usernames', 'Sharing a device', 'Using independent factor types to verify identity']],
+    ['What does least privilege mean?', ['Give every account administrator access', 'Grant only permissions needed for a task', 'Disable all user accounts', 'Store roles in frontend code only']],
+    ['Where should permission checks for sensitive actions occur?', ['Only in the UI', 'Only in a tooltip', 'On the server', 'Only in a local variable']],
+  ],
+  'cyber-web-security': [
+    ['How do parameterized database operations reduce injection risk?', ['Keep input data separate from query structure', 'Make input trusted automatically', 'Disable authentication', 'Expose database errors']],
+    ['What does output encoding help prevent?', ['Network latency', 'Disk failure', 'Unauthorized VM creation', 'Interpreting untrusted content as executable markup']],
+    ['What does HTTPS protect?', ['Every endpoint from authorization bugs', 'Data in transit between peers', 'Passwords after plaintext storage', 'A server from all malware']],
+    ['Why validate input on the server if the browser already validates it?', ['Browser validation is always encrypted', 'It increases CSS accuracy', 'Clients can be modified or bypassed', 'It removes all need for tests']],
+    ['What is a trust boundary?', ['A visual divider', 'A point where data crosses between different trust contexts', 'A database sort order', 'A JavaScript loop']],
+  ],
+  'cyber-threat-modeling': [
+    ['What is a useful first step in threat modeling?', ['Map assets, components, and data flows', 'Choose colors for the dashboard', 'Disable all logs', 'Write fixes before understanding the system']],
+    ['Why identify trust boundaries?', ['They show where validation and authorization are important', 'They make networks unnecessary', 'They increase image resolution', 'They replace backups']],
+    ['How should mitigations be prioritized?', ['By visual complexity', 'By number of pages', 'By developer preference only', 'By risk, impact, and likelihood']],
+    ['What should an abuse case describe?', ['A successful happy-path click only', 'A way a system could be misused to cause harm', 'A CSS animation', 'A lesson completion state']],
+    ['What is residual risk?', ['Risk remaining after controls are applied', 'A removed dependency', 'A completed quiz', 'A network route']],
+  ],
+  'data-fundamentals': [
+    ['What makes an analysis question useful?', ['It is measurable and defines scope', 'It contains as many words as possible', 'It avoids specifying an outcome', 'It assumes the conclusion']],
+    ['Why record how a variable was measured?', ['To hide its definition', 'To avoid checking data', 'To interpret it correctly and understand limitations', 'To guarantee causality']],
+    ['What can a missing value indicate?', ['Always a true zero', 'A collection or recording issue that needs context', 'A positive result', 'A duplicate row']],
+    ['What is a population in an analysis question?', ['A chart color palette', 'The database server', 'A model parameter', 'The group of entities the question concerns']],
+    ['Why communicate uncertainty?', ['So decisions reflect evidence limits', 'To make results look certain', 'To remove the need for context', 'To bypass validation']],
+  ],
+  'data-analysis': [
+    ['In a table, what does a row commonly represent?', ['One observation or record', 'A chart axis', 'A database server', 'A model layer']],
+    ['Why inspect column types before analysis?', ['To make data larger', 'To replace every value', 'To ensure operations match the stored meaning', 'To avoid documentation']],
+    ['When may a median be more useful than a mean?', ['Only for text', 'For skewed values with extreme observations', 'When there is no data', 'For CSS lengths only']],
+    ['Why document data transformations?', ['To prevent anyone from reproducing the work', 'To change the original silently', 'To avoid peer review', 'To make analysis traceable and repeatable']],
+    ['What should happen before removing duplicates?', ['Understand whether repeated rows are valid observations', 'Delete all repeated values blindly', 'Convert every number to text', 'Ignore row identity']],
+  ],
+  'data-visualization': [
+    ['Which chart is often useful for change over ordered time?', ['Pie chart with many slices', 'Unlabeled table', 'Line chart', 'Network firewall']],
+    ['What improves interpretation of a chart?', ['Removing all units', 'Clear labels, scale, and time context', 'Using color only', 'Hiding uncertainty']],
+    ['Which visual encoding supports precise comparisons well?', ['Unordered decorative icons', '3D perspective alone', 'Random color hue', 'Position or length on a common scale']],
+    ['How should color be used?', ['As the only way to communicate critical state', 'With contrast and redundant labels where needed', 'Without checking readability', 'Only as decoration']],
+    ['What can a truncated axis do?', ['Make small differences appear larger than they are', 'Guarantee statistical significance', 'Remove sampling bias', 'Improve missing values']],
+  ],
+  'data-machine-learning': [
+    ['Why preserve time order when predicting future events?', ['To make the chart colorful', 'To avoid using features', 'To match evaluation to the real prediction setting', 'To include future information in training']],
+    ['What is data leakage in a model evaluation?', ['Using information that would not be available at prediction time', 'Using a baseline', 'Reporting a metric', 'Splitting a dataset']],
+    ['Why inspect model errors by subgroup?', ['To hide aggregate results', 'To ensure every group is identical', 'To increase training loss', 'To discover uneven failure patterns']],
+    ['Why compare a model with a baseline?', ['To ensure the model is more complex', 'To determine whether added complexity provides value', 'To remove the target label', 'To prevent evaluation']],
+    ['What should guide a deployment decision?', ['Performance alone without context', 'Training accuracy only', 'Metrics, error costs, limitations, and operational impact', 'The largest possible model']],
+  ],
+}
+
+export const quizQuestions = Object.entries(moduleQuestions).flatMap(([moduleId, questions]) =>
+  questions.map(([question, options], index) => ({
+    id: `${moduleId}-q${index + 1}`,
+    moduleId,
+    question,
+    options,
+  })),
+)
+
+export function getQuizQuestions(moduleId) {
+  return quizQuestions.filter((question) => question.moduleId === moduleId)
+}
